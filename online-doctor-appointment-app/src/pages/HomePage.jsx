@@ -1,6 +1,27 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+import axios from 'axios';
 
 const HomePage = () => {
+  //login user data
+  const instance = axios.create({
+    baseURL:"http://localhost:8080"
+  })
+  const getUserData = async () =>{
+    try {
+      const res = await instance.post('/api/v1/user/getUserData',{},{
+        headers:{
+          Authorization:"Bearer " + localStorage.getItem('token')
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  useEffect(()=>{
+    getUserData()
+  },[])
   return (
     <div>
         <h1>
