@@ -1,12 +1,34 @@
 import React from 'react'
-import { Form,Input } from 'antd';
+import { Form,Input, message } from 'antd';
 import "../styles/RegisterStyle.css"
-import {Link} from 'react-router-dom'
+import axios from 'axios'
+import {Link, useNavigate} from 'react-router-dom'
 
-const Register = () => {
+const Register =  () => {
+  const navigate = useNavigate()
   // onFinishHandler
-  const onfinishHandler = (values)=>{
-    console.log(values)
+  const onfinishHandler = async (values)=>{
+    console.log(values);
+    
+    const instance = axios.create({
+      baseURL:"http://localhost:8080"
+    })
+    try {
+      const res = await instance.post('/api/v1/user/register',values)
+      console.log(res);
+      
+      if(res.data.success){
+        message.success("Register Successfully !");
+        navigate('/login')
+      } 
+      else{
+        message.error(res.data.message)
+      }
+      
+    } catch (error) {
+      console.log(error);
+      message.error('Something went Wrong')      
+    }
   }
 
   
@@ -40,3 +62,11 @@ const Register = () => {
 }
 
 export default Register
+
+// import axios from 'axios';
+
+// const instance = axios.create({
+//   baseURL: 'https://new-api-url.com' // Replace with your new base URL
+// });
+
+// export default instance;

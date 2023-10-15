@@ -5,6 +5,7 @@ const color =require ("colors")
 const morgan = require ("morgan")
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+const cors = require('cors')
 
 //dotenv config
 dotenv.config()
@@ -16,7 +17,9 @@ const app = express()
 
 // middlewares
 app.use(express.json())
+app.use(cors());
 app.use(morgan('dev'))
+
 
 // routes
 
