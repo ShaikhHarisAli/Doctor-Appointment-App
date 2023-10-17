@@ -7,6 +7,7 @@ const registerController= async (req,res)=>{
     try{
         const existingUser = await userModel.findOne({email:req.body.email});
         
+        
         if(existingUser){
             return res.status(200).send({message:"User Already Exist",success:false})
         }
@@ -55,16 +56,14 @@ const loginController= async (req,res)=>{
 
 const authController = async (req,res)=>{
     try {
-        const user = await userModel.findOne({ _id: req.body.userId });
+        const user = await userModel.findById({ _id: req.body.userId });
+        user.password = undefined;
         if(!user){
             return res.status(200).send({message:"user not found",success:false})
         }else{
             res.status(200).send({
                 success:true,
-                data:{
-                    name:user.name,
-                    email:user.email
-                } 
+                data:user
                     
             })
         }

@@ -20,6 +20,7 @@ const Login = () => {
     try {
       dispatch(showLoading())
       const res = await instance.post('/api/v1/user/login',values)
+      window.location.reload()
       dispatch(hideLoading())
       console.log(res);
       if (res.data.success) {
@@ -45,7 +46,7 @@ const Login = () => {
     
     <Form layout='vertical' onFinish={onfinishHandler} className='register-form'>
       <h1 className='text-center'>Login Form</h1>
-      <Form.Item label="Eame" name="email">
+      <Form.Item label="Email" name="email">
         <Input type='email' required/>
       </Form.Item>
       <Form.Item label="Password" name="password">
