@@ -24,7 +24,7 @@ console.log(loading)
       <Route path='/login' element={ <PublicRoute><Login/></PublicRoute> }/>
       <Route path='/register' element={<PublicRoute><Register/></PublicRoute>}/>
     </Routes>
-    <nav>
+    {/* <nav>
     <ul>
       <li>
         <Link to="/">Home</Link>
@@ -36,7 +36,7 @@ console.log(loading)
         <Link to="/register">Register</Link>
       </li>
     </ul>
-  </nav>
+  </nav> */}
 
     </>
     
