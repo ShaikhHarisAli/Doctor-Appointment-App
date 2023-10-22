@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import Spinner from './components/Spinner.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import PublicRoute from './components/PublicRoute.jsx'
+import ApplyDoctor from './pages/ApplyDoctor.jsx'
 
 
 
@@ -20,6 +21,7 @@ console.log(loading)
     {loading ? <Spinner/> : <><Routes>
 
       <Route path='/' element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+      <Route path='/apply-doctor' element={<ProtectedRoute><ApplyDoctor/></ProtectedRoute>}/>
       
       <Route path='/login' element={ <PublicRoute><Login/></PublicRoute> }/>
       <Route path='/register' element={<PublicRoute><Register/></PublicRoute>}/>
